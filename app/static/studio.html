@@ -51,14 +51,31 @@
 
       <div class="panel">
         <section class="stage active" data-stage="1">
-          <div class="stage-head"><div><span class="kicker">Step 01</span><h2 id="studio-title">Your three angles</h2><p>Use even light, keep hair away from your face, and remove glasses.</p></div><button class="text-button" id="demo-help" type="button">Capture guide</button></div>
-          <div class="capture-grid">
-            <label class="capture" data-view="front"><input type="file" accept="image/jpeg,image/png,image/webp"><img alt="Front-view preview"><span class="capture-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><b>Front</b><small>Look straight ahead</small><i>Required</i></label>
-            <label class="capture" data-view="left"><input type="file" accept="image/jpeg,image/png,image/webp"><img alt="Left-view preview"><span class="capture-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><b>Left profile</b><small>Turn 90° to your left</small><i>Required</i></label>
-            <label class="capture" data-view="right"><input type="file" accept="image/jpeg,image/png,image/webp"><img alt="Right-view preview"><span class="capture-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><b>Right profile</b><small>Turn 90° to your right</small><i>Required</i></label>
+          <div class="stage-head"><div><span class="kicker">Step 01</span><h2 id="studio-title">Your three angles</h2><p>Use the live guide to center your face and capture each required view.</p></div><button class="text-button" id="demo-help" type="button">Capture guide</button></div>
+          <div class="camera-layout">
+            <div class="camera-shell" id="camera-shell">
+              <video id="camera" playsinline muted aria-label="Live camera preview"></video>
+              <canvas id="camera-canvas" hidden></canvas>
+              <div class="face-guide" aria-hidden="true"><span></span></div>
+              <div class="camera-empty" id="camera-empty"><b>Camera access is required</b><span>Your photos stay in this browser until you choose Analyze.</span></div>
+              <div class="camera-feedback" id="camera-feedback" role="status" aria-live="polite">Start the camera to begin.</div>
+            </div>
+            <div class="capture-controls">
+              <span class="capture-step" id="capture-step">Front view · 1 of 3</span>
+              <h3 id="capture-title">Look straight ahead</h3>
+              <p id="capture-instruction">Keep your face inside the oval, at eye level, with a neutral expression.</p>
+              <button class="primary" id="start-camera" type="button">Start camera</button>
+              <button class="primary" id="capture-photo" type="button" disabled>Capture front view</button>
+              <button class="text-button" id="stop-camera" type="button" hidden>Stop camera</button>
+            </div>
+          </div>
+          <div class="capture-strip" aria-label="Captured views">
+            <article class="capture-thumb" data-view="front"><div><img alt="Captured front view"><span>Front</span></div><button type="button" disabled>Retake</button></article>
+            <article class="capture-thumb" data-view="left"><div><img alt="Captured left profile"><span>Left profile</span></div><button type="button" disabled>Retake</button></article>
+            <article class="capture-thumb" data-view="right"><div><img alt="Captured right profile"><span>Right profile</span></div><button type="button" disabled>Retake</button></article>
           </div>
           <div id="analysis-status" class="analysis-status" aria-live="polite"></div>
-          <div class="stage-actions"><span>JPEG, PNG or WebP · 8 MB maximum</span><button class="primary" id="analyze" type="button" disabled>Analyze my face <span>→</span></button></div>
+          <div class="stage-actions"><span>Three centered views are required before analysis.</span><button class="primary" id="analyze" type="button" disabled>Analyze my face <span>→</span></button></div>
         </section>
 
         <section class="stage" data-stage="2">

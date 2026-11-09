@@ -4,7 +4,9 @@ A lightweight, explainable haircut recommendation prototype designed to run on a
 
 ## What works
 
-- Three-photo upload with file, size, resolution, and blur validation
+- Guided live-camera capture for front, left, and right views
+- Live single-face, centering, face-size, and approximate pose guidance
+- Server-side file, size, resolution, exposure, and blur validation
 - MediaPipe facial-landmark analysis with user confirmation
 - Hair texture, density, length, and maintenance profile
 - Rules-based ranking from a rights-aware hairstyle catalog
@@ -23,6 +25,8 @@ python -m uvicorn app.main:app --reload
 
 Open <http://127.0.0.1:8000>.
 
+Camera capture requires a secure browser context. It works on `localhost` during local development and must use HTTPS when deployed.
+
 ## Run tests
 
 ```powershell
@@ -34,6 +38,7 @@ python -m unittest discover -s tests -v
 - `GET /health`
 - `GET /v1/hairstyles`
 - `POST /v1/validate-photos`
+- `POST /v1/capture-check`
 - `POST /v1/analyze-face`
 - `POST /v1/recommendations`
 - Interactive API documentation: <http://127.0.0.1:8000/docs>

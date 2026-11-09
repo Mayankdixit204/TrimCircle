@@ -4,7 +4,7 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from .face_analysis import analyze_views
+from .face_analysis import analyze_views, check_capture
 from .image_validation import validate_photo
 from .job_api import router as job_router
 from .overlay_api import router as overlay_router
@@ -60,6 +60,23 @@ async def validate_photos(
     return results
 
 
+@app.post("/v1/capture-check")
+async def capture_check(
+    photo: UploadFile = File(...),
+    view: str = Form(...),
+) -> dict:
+    if view not in {"front", "left", "right"}:
+        raise HTTPException(status_code=422, detail="View must be front, left, or right")
+    content = await photo.read(2 * 1024 * 1024 + 1)
+    await photo.close()
+    if len(content) > 2 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Camera frame exceeds 2 MB")
+    try:
+        return check_capture(content, view)
+    except (OSError, ValueError) as error:
+        raise HTTPException(status_code=422, detail="Unreadable camera frame") from error
+
+
 @app.post("/v1/analyze-face")
 async def analyze_face(
     front: UploadFile = File(...),
@@ -73,7 +90,8 @@ async def analyze_face(
     checks = [validate_photo(view, content) for view, content in images.items()]
     if any(not check.valid for check in checks):
         return {
-            "face_shape": "unknown", "confidence": 0.0, "metrics": {}, "views": [],
+            "face_shape": "unknown", "alternative_face_shape": None,
+            "uncertainty": "unusable", "metrics": {}, "measurements": [], "views": [],
             "notice": "Fix photo-quality issues before facial analysis.",
             "photo_checks": [check.model_dump() for check in checks],
         }
@@ -111,11 +129,10 @@ def recommendations(profile: RecommendationProfile) -> RecommendationResponse:
     notice = (
         "Face shape was not specified, so versatile styles were prioritized."
         if profile.face_shape.value == "unknown"
-        else "Recommendations are an explainable baseline, not professional advice."
+        else "Scores are configurable internal ranking points, not probabilities or measured suitability."
     )
     return RecommendationResponse(
         recommendations=items,
         face_shape_used=profile.face_shape,
         notice=notice,
     )
-

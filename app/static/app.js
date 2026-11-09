@@ -68,7 +68,7 @@ form.addEventListener('submit', async (event) => {
     resultsNotice.textContent = data.notice;
     resultList.innerHTML = data.recommendations.length ? data.recommendations.map((item) => `
       <article class="result-card">
-        <div class="score" aria-label="Compatibility score ${item.score} out of 100">${item.score}</div>
+        <div class="score" aria-label="${item.score} internal ranking points">${item.score}<small> pts</small></div>
         <h3>${escapeHtml(item.name)}</h3>
         <p>${escapeHtml(item.description)}</p>
         <ul>${item.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join('')}</ul>
@@ -85,4 +85,3 @@ form.addEventListener('submit', async (event) => {
     submitButton.textContent = 'Show my recommendations';
   }
 });
-

@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from PIL import Image, ImageFilter, ImageStat, UnidentifiedImageError
+from PIL import Image, ImageFilter, ImageOps, ImageStat, UnidentifiedImageError
 
 from .models import PhotoCheck
 
@@ -21,8 +21,9 @@ def validate_photo(view: str, content: bytes) -> PhotoCheck:
         with Image.open(BytesIO(content)) as image:
             image.verify()
         with Image.open(BytesIO(content)) as image:
-            width, height = image.size
             image_format = image.format
+            image = ImageOps.exif_transpose(image)
+            width, height = image.size
             if image_format not in ALLOWED_FORMATS:
                 messages.append("Use a JPEG, PNG, or WebP photo.")
             if min(width, height) < MIN_SIDE:
@@ -35,6 +36,12 @@ def validate_photo(view: str, content: bytes) -> PhotoCheck:
             if sharpness < 35:
                 messages.append("The photo may be blurry. Retake it in good light and hold still.")
 
+            brightness = round(ImageStat.Stat(thumbnail).mean[0], 1)
+            if brightness < 28:
+                messages.append("The photo is too dark. Use even light on the face.")
+            elif brightness > 235:
+                messages.append("The photo is overexposed. Move away from harsh light.")
+
             return PhotoCheck(
                 view=view,
                 valid=not messages,
@@ -45,4 +52,3 @@ def validate_photo(view: str, content: bytes) -> PhotoCheck:
             )
     except (UnidentifiedImageError, OSError):
         return PhotoCheck(view=view, valid=False, messages=["This file is not a readable image."])
-
