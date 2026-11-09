@@ -1,0 +1,6 @@
+fastapi>=0.110,<1
+uvicorn[standard]>=0.27,<1
+pydantic>=2.6,<3
+python-multipart>=0.0.9,<1
+Pillow>=10,<12
+mediapipe>=0.10,<0.11

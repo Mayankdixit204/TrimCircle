@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI-assisted, explainable haircut consultation using three private photos.">
+  <title>TrimCircle Studio</title>
+  <link rel="stylesheet" href="/static/studio.css">
+  <link rel="stylesheet" href="/static/tryon.css">
+  <link rel="stylesheet" href="/static/overlay.css">
+  <script src="/static/studio.js" defer></script>
+  <script src="/static/tryon.js" defer></script>
+  <script src="/static/overlay.js" defer></script>
+  <script src="/static/overlay-demo.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#studio">Skip to consultation</a>
+  <header class="topbar">
+    <a class="logo" href="#"><span class="logo-orbit"><i></i></span><strong>TRIM</strong>CIRCLE</a>
+    <div class="header-meta"><span class="privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8.8 7 10 4.2-1.2 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>Private by design</span><a href="/docs">API</a></div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="intro-copy">
+        <span class="kicker">AI-assisted style consultation</span>
+        <h1>See the cut<br><em>before the chair.</em></h1>
+        <p>Three angles. Real facial geometry. Hair-aware recommendations with a clear explanation behind every match.</p>
+        <a class="cta" href="#studio">Start your analysis <span>→</span></a>
+        <div class="proof"><span><b>468</b> facial landmarks</span><span><b>3-view</b> validation</span><span><b>Local</b> processing</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Abstract face analysis illustration">
+        <div class="portrait-frame">
+          <div class="face-silhouette"><span class="scan-line"></span><span class="mesh mesh-one"></span><span class="mesh mesh-two"></span><span class="mesh mesh-three"></span></div>
+          <div class="float-card fc-one"><small>Face geometry</small><strong>Multi-point scan</strong><span>Ready</span></div>
+          <div class="float-card fc-two"><small>Privacy mode</small><strong>Photos not retained</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="studio" class="studio-shell" aria-labelledby="studio-title">
+      <aside class="rail">
+        <span class="rail-label">Consultation</span>
+        <ol class="steps">
+          <li class="active" data-step-marker="1"><b>01</b><span>Capture<small>Three angles</small></span></li>
+          <li data-step-marker="2"><b>02</b><span>Profile<small>Hair & preferences</small></span></li>
+          <li data-step-marker="3"><b>03</b><span>Results<small>Your shortlist</small></span></li>
+        </ol>
+        <div class="local-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/></svg><p><strong>Built for your PC</strong>Images are processed one at a time to keep memory use low.</p></div>
+      </aside>
+
+      <div class="panel">
+        <section class="stage active" data-stage="1">
+          <div class="stage-head"><div><span class="kicker">Step 01</span><h2 id="studio-title">Your three angles</h2><p>Use even light, keep hair away from your face, and remove glasses.</p></div><button class="text-button" id="demo-help" type="button">Capture guide</button></div>
+          <div class="capture-grid">
+            <label class="capture" data-view="front"><input type="file" accept="image/jpeg,image/png,image/webp"><img alt="Front-view preview"><span class="capture-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><b>Front</b><small>Look straight ahead</small><i>Required</i></label>
+            <label class="capture" data-view="left"><input type="file" accept="image/jpeg,image/png,image/webp"><img alt="Left-view preview"><span class="capture-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><b>Left profile</b><small>Turn 90° to your left</small><i>Required</i></label>
+            <label class="capture" data-view="right"><input type="file" accept="image/jpeg,image/png,image/webp"><img alt="Right-view preview"><span class="capture-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><b>Right profile</b><small>Turn 90° to your right</small><i>Required</i></label>
+          </div>
+          <div id="analysis-status" class="analysis-status" aria-live="polite"></div>
+          <div class="stage-actions"><span>JPEG, PNG or WebP · 8 MB maximum</span><button class="primary" id="analyze" type="button" disabled>Analyze my face <span>→</span></button></div>
+        </section>
+
+        <section class="stage" data-stage="2">
+          <div class="stage-head"><div><span class="kicker">Step 02</span><h2>Your hair profile</h2><p>These details matter as much as face shape when choosing a practical cut.</p></div><button class="text-button back" type="button">← Back</button></div>
+          <div id="face-report" class="face-report"></div>
+          <form id="profile-form">
+            <div class="question"><label for="face_shape">Face-shape estimate</label><select id="face_shape" name="face_shape"><option value="unknown">Not sure</option><option>oval</option><option>round</option><option>square</option><option>oblong</option><option>heart</option><option>diamond</option></select><small>You stay in control—change the estimate if it looks wrong.</small></div>
+            <div class="choice-row">
+              <fieldset><legend>Natural texture</legend><div class="segmented" data-name="texture"><button type="button" data-value="straight">Straight</button><button type="button" data-value="wavy">Wavy</button><button type="button" data-value="curly">Curly</button><button type="button" data-value="coily">Coily</button></div></fieldset>
+              <fieldset><legend>Hair density</legend><div class="segmented" data-name="density"><button type="button" data-value="low">Fine</button><button type="button" data-value="medium">Medium</button><button type="button" data-value="high">Thick</button></div></fieldset>
+            </div>
+            <div class="choice-row">
+              <fieldset><legend>Current length</legend><div class="segmented" data-name="current_length"><button type="button" data-value="short">Short</button><button type="button" data-value="medium">Medium</button><button type="button" data-value="long">Long</button></div></fieldset>
+              <fieldset><legend>Desired length</legend><div class="segmented" data-name="desired_length"><button type="button" data-value="short">Short</button><button type="button" data-value="medium">Medium</button><button type="button" data-value="long">Long</button></div></fieldset>
+            </div>
+            <fieldset><legend>Daily styling effort</legend><div class="effort-cards segmented" data-name="maintenance"><button type="button" data-value="low"><b>Low</b><small>Wash and go</small></button><button type="button" data-value="medium"><b>Medium</b><small>5–10 minutes</small></button><button type="button" data-value="high"><b>High</b><small>Styled finish</small></button></div></fieldset>
+            <div id="profile-error" class="error" role="alert"></div>
+            <div class="stage-actions"><span>Your profile remains in this browser session.</span><button class="primary" type="submit">Build my shortlist <span>→</span></button></div>
+          </form>
+        </section>
+
+        <section class="stage" data-stage="3">
+          <div class="stage-head"><div><span class="kicker">Your edit</span><h2>Styles worth taking to your barber.</h2><p id="results-note"></p></div><button class="text-button restart" type="button">Start over</button></div>
+          <div class="result-summary" id="result-summary"></div>
+          <div class="recommendations" id="recommendations"></div>
+          <div class="results-footer"><p><strong>Remember:</strong> texture, growth patterns, and your stylist’s assessment affect the final result.</p><button class="secondary profile-back" type="button">Adjust profile</button></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="guide"><button class="dialog-close" aria-label="Close guide">×</button><span class="kicker">Capture guide</span><h2>Give the model a clean view.</h2><div class="guide-grid"><div><b>01</b><h3>Face a window</h3><p>Use soft, even light. Avoid strong shadows and backlighting.</p></div><div><b>02</b><h3>Clear the outline</h3><p>Move hair away from the forehead, cheeks, and jaw.</p></div><div><b>03</b><h3>Hold still</h3><p>Keep the camera at eye level and your expression neutral.</p></div></div></dialog>
+  <footer><a class="logo" href="#"><strong>TRIM</strong>CIRCLE</a><p>Experimental recommendation engine · Photos are analyzed in memory and not retained.</p></footer>
+</body>
+</html>

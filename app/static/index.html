@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Private, explainable haircut recommendations from your hair profile and three photos.">
+  <title>TrimCircle — Find your next haircut</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="TrimCircle home">
+      <span class="brand-mark" aria-hidden="true">TC</span>
+      <span>TrimCircle</span>
+    </a>
+    <span class="privacy-note">Photos are checked, not stored</span>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Explainable haircut matching</p>
+      <h1 id="hero-title">A better starting point for your next cut.</h1>
+      <p class="hero-copy">Add three clear photos and tell us about your hair. We’ll rank practical options and explain every match.</p>
+      <a class="button button-primary" href="#recommendation-form">Find my styles</a>
+      <div class="trust-row" aria-label="Service highlights">
+        <span>Local baseline</span><span>₹0 AI fees</span><span>No forced face label</span>
+      </div>
+    </section>
+
+    <section class="workspace" aria-labelledby="form-title">
+      <div class="section-heading">
+        <p class="eyebrow">Your profile</p>
+        <h2 id="form-title">Build your recommendation</h2>
+        <p>All fields are used to make the ranking more relevant. Face shape can be left as “Not sure.”</p>
+      </div>
+
+      <form id="recommendation-form" novalidate>
+        <fieldset>
+          <legend><span>1</span> Add three photos</legend>
+          <p class="field-help">Use a well-lit front, left, and right view. JPEG, PNG, or WebP; maximum 8 MB each.</p>
+          <div class="upload-grid">
+            <label class="upload-card"><span>Front view</span><input type="file" name="front" accept="image/jpeg,image/png,image/webp" required><small>Look straight at the camera</small></label>
+            <label class="upload-card"><span>Left view</span><input type="file" name="left" accept="image/jpeg,image/png,image/webp" required><small>Turn naturally to your left</small></label>
+            <label class="upload-card"><span>Right view</span><input type="file" name="right" accept="image/jpeg,image/png,image/webp" required><small>Turn naturally to your right</small></label>
+          </div>
+          <button class="button button-secondary" type="button" id="validate-photos">Check photo quality</button>
+          <div id="photo-status" class="status" role="status" aria-live="polite"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>2</span> Tell us about your hair</legend>
+          <div class="form-grid">
+            <label>Face shape<select name="face_shape"><option value="unknown">Not sure</option><option>oval</option><option>round</option><option>square</option><option>oblong</option><option>heart</option><option>diamond</option></select></label>
+            <label>Hair texture<select name="texture" required><option value="">Choose texture</option><option>straight</option><option>wavy</option><option>curly</option><option>coily</option></select></label>
+            <label>Hair density<select name="density" required><option value="">Choose density</option><option>low</option><option>medium</option><option>high</option></select></label>
+            <label>Current length<select name="current_length" required><option value="">Choose length</option><option>short</option><option>medium</option><option>long</option></select></label>
+            <label>Desired length<select name="desired_length" required><option value="">Choose length</option><option>short</option><option>medium</option><option>long</option></select></label>
+            <label>Maintenance preference<select name="maintenance" required><option value="">Choose effort</option><option>low</option><option>medium</option><option>high</option></select></label>
+          </div>
+          <label class="full-field">Styles to exclude <input name="excluded_styles" type="text" placeholder="Example: buzz cut, modern shag"><small>Optional; separate names with commas.</small></label>
+        </fieldset>
+
+        <div id="form-error" class="error" role="alert" hidden></div>
+        <button class="button button-primary submit-button" type="submit">Show my recommendations</button>
+      </form>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="results-title" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">Your shortlist</p>
+        <h2 id="results-title" tabindex="-1">Recommended styles</h2>
+        <p id="results-notice"></p>
+      </div>
+      <div id="result-list" class="result-grid"></div>
+    </section>
+  </main>
+
+  <footer>TrimCircle prototype · Recommendations are guidance, not a guarantee of the final result.</footer>
+</body>
+</html>
+

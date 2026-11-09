@@ -1,0 +1,123 @@
+[
+  {
+    "id": "textured-crop",
+    "name": "Textured Crop",
+    "description": "A short, layered cut with controlled texture and an easy everyday finish.",
+    "face_shapes": ["oval", "square", "oblong", "diamond"],
+    "textures": ["straight", "wavy", "curly"],
+    "densities": ["medium", "high"],
+    "minimum_length": "short",
+    "finished_lengths": ["short"],
+    "maintenance": "low",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "side-part-taper",
+    "name": "Side Part with Taper",
+    "description": "A clean tapered outline with enough length on top for a natural side part.",
+    "face_shapes": ["round", "oval", "square", "heart"],
+    "textures": ["straight", "wavy"],
+    "densities": ["low", "medium", "high"],
+    "minimum_length": "short",
+    "finished_lengths": ["short", "medium"],
+    "maintenance": "medium",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "curly-taper",
+    "name": "Curly Taper",
+    "description": "Keeps natural curls visible while softly reducing weight around the sides and neckline.",
+    "face_shapes": ["oval", "round", "square", "oblong"],
+    "textures": ["curly", "coily"],
+    "densities": ["medium", "high"],
+    "minimum_length": "short",
+    "finished_lengths": ["short", "medium"],
+    "maintenance": "medium",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "soft-pixie",
+    "name": "Soft Pixie",
+    "description": "A short, softly layered shape with customizable fringe and crown volume.",
+    "face_shapes": ["oval", "heart", "diamond", "oblong"],
+    "textures": ["straight", "wavy", "curly"],
+    "densities": ["low", "medium", "high"],
+    "minimum_length": "short",
+    "finished_lengths": ["short"],
+    "maintenance": "medium",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "layered-bob",
+    "name": "Layered Bob",
+    "description": "A chin-to-shoulder shape with movement-building layers and an adaptable outline.",
+    "face_shapes": ["oval", "round", "heart", "diamond"],
+    "textures": ["straight", "wavy", "curly"],
+    "densities": ["low", "medium", "high"],
+    "minimum_length": "medium",
+    "finished_lengths": ["medium"],
+    "maintenance": "medium",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "shoulder-layers",
+    "name": "Shoulder-Length Layers",
+    "description": "Balanced layers around the shoulders that add movement without sacrificing versatility.",
+    "face_shapes": ["oval", "round", "square", "heart", "diamond", "oblong"],
+    "textures": ["straight", "wavy", "curly"],
+    "densities": ["low", "medium", "high"],
+    "minimum_length": "medium",
+    "finished_lengths": ["medium", "long"],
+    "maintenance": "low",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "long-face-framing-layers",
+    "name": "Long Face-Framing Layers",
+    "description": "Long layers shaped around the cheekbones and jaw for movement and a softer outline.",
+    "face_shapes": ["round", "square", "heart", "diamond"],
+    "textures": ["straight", "wavy", "curly"],
+    "densities": ["medium", "high"],
+    "minimum_length": "long",
+    "finished_lengths": ["long"],
+    "maintenance": "medium",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "coily-rounded-shape",
+    "name": "Rounded Coily Shape",
+    "description": "A balanced silhouette that celebrates natural coil volume with a softly rounded outline.",
+    "face_shapes": ["oval", "square", "heart", "diamond", "oblong"],
+    "textures": ["coily"],
+    "densities": ["medium", "high"],
+    "minimum_length": "medium",
+    "finished_lengths": ["medium", "long"],
+    "maintenance": "medium",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "modern-shag",
+    "name": "Modern Shag",
+    "description": "A layered, airy cut with movement through the crown and a relaxed perimeter.",
+    "face_shapes": ["oval", "round", "square", "heart", "oblong"],
+    "textures": ["straight", "wavy", "curly"],
+    "densities": ["medium", "high"],
+    "minimum_length": "medium",
+    "finished_lengths": ["medium", "long"],
+    "maintenance": "high",
+    "asset_rights": "none-required"
+  },
+  {
+    "id": "buzz-cut",
+    "name": "Buzz Cut",
+    "description": "An even, very short cut that is simple to style and emphasizes facial structure.",
+    "face_shapes": ["oval", "square", "diamond"],
+    "textures": ["straight", "wavy", "curly", "coily"],
+    "densities": ["low", "medium", "high"],
+    "minimum_length": "short",
+    "finished_lengths": ["short"],
+    "maintenance": "low",
+    "asset_rights": "none-required"
+  }
+]
+

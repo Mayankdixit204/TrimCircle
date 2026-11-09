@@ -1,0 +1,10 @@
+{
+  "id": "textured-crop",
+  "name": "Textured Crop",
+  "version": 1,
+  "views": {
+    "front": {"asset": "front.webp", "width_ratio": 1.55, "hairline_offset": 0.70},
+    "left": {"asset": "left.webp", "width_ratio": 1.48, "hairline_offset": 0.72},
+    "right": {"asset": "right.webp", "width_ratio": 1.48, "hairline_offset": 0.72}
+  }
+}
